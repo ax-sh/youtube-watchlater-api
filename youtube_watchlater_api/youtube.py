@@ -2,6 +2,11 @@ from yt_dlp import YoutubeDL
 from youtube_watchlater_api.utils import *
 
 
+def progress_hook( response ):
+    ##  send  response['status']  to whatever subprocess you have going on.
+    print( response['status'] )
+
+
 CONFIG = {
     "ignoreerrors": True,
     "verbose": True,
@@ -12,7 +17,8 @@ CONFIG = {
     # "extract_flat": True,
     # "dump_single_json": "",
     # "print_to_file"
-    # 'consoletitle':"GEtting watchlater playlist"
+    'consoletitle':"Getting watchlater playlist",
+    'progress_hooks': [progress_hook],
 }
 
 
@@ -26,9 +32,22 @@ class YoutubeTools:
         self.youtube_dl = YoutubeDL(config)
 
     def watch_later_fast(self):
-        with YoutubeDL(self.config) as ydl:
+        with YoutubeDL({
+            "ignoreerrors": True,
+            "verbose": True,
+            # "debug": True,
+            # 'yes-playlist': True,
+            'cookiesfrombrowser': ('vivaldi',),
+            'allow_unplayable_formats':True,
+            "extract_flat": True,
+            # "dump_single_json": "",
+            # "print_to_file"
+            # 'consoletitle':"Getting watchlater playlist",
+            'progress_hooks': [progress_hook],
+        }) as ydl:
             info = ydl.extract_info(self.WATCH_LATER_URL, download=False)
             print(info)
+            return info
 
     def watch_later(self):
         return self.youtube_dl.extract_info(self.WATCH_LATER_URL, download=False)
@@ -68,12 +87,12 @@ class YoutubeTools:
 #
 #
 def main():
-    wl_json_path = YoutubeTools.path / 'watchlater.json'
+    wl_json_path = YoutubeTools.path / 'watchlater-2.json'
 #     # if not  wl_json_path.is_file():
 #     #     wl_json_path.write_json({})
 #
     yt = YoutubeTools()
-    info = yt.watch_later()
+    info = yt.watch_later_fast()
     print(info)
     wl_json_path.write_json(info)
 #

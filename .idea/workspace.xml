@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ef0925ef-90e3-4295-945e-1fe74504d5e7" name="Changes" comment="add youtube">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/youtube_watchlater_api/youtube.py" beforeDir="false" afterPath="$PROJECT_DIR$/youtube_watchlater_api/youtube.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -38,7 +39,7 @@
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -51,7 +52,7 @@
       <option name="presentableId" value="Default" />
       <updated>1690282166354</updated>
       <workItem from="1690282167606" duration="171000" />
-      <workItem from="1690282349823" duration="3967000" />
+      <workItem from="1690282349823" duration="7135000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1690283120522</created>
@@ -109,7 +110,14 @@
       <option name="project" value="LOCAL" />
       <updated>1690285765538</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="add youtube">
+      <created>1690286398849</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1690286398849</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
