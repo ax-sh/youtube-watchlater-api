@@ -1,12 +1,13 @@
 from yt_dlp import YoutubeDL
 from youtube_watchlater_api.utils import *
 
+
 CONFIG = {
     "ignoreerrors": True,
     "verbose": True,
     "debug": True,
     'yes-playlist': True,
-    'cookiesfrombrowser': ('edge',),
+    'cookiesfrombrowser': ('vivaldi',),
     # "extract_flat": True,
     # "dump_single_json": "",
     # "print_to_file"
