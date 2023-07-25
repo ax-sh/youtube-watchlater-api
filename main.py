@@ -1,38 +1,30 @@
-from typing import Union
-from fastapi import FastAPI
-from starlette.background import BackgroundTasks
+from fastapi import FastAPI, BackgroundTasks
+import logging
 
+from youtube_watchlater_api.youtube import YoutubeTools
+
+logger = logging.getLogger(__name__)  # the __name__ resolve to "main" since we are at the root of the project.
+                                      # This will get the root logger since no logger in the configuration has this name.
 app = FastAPI()
 
 
+def write_watch_later_playlist():
+    yt = YoutubeTools()
+    info = yt.watch_later_fast()
+    return info
+
+
 @app.get("/")
-def read_root():
-    return {"Hello": "World"}
+def read_root(background_tasks: BackgroundTasks):
+    background_tasks.add_task(write_watch_later_playlist)
+    file_path = (YoutubeTools.path/"watchlater-21.json")
 
-
-# @app.get("/items/{item_id}")
-# def read_item(item_id: int, q: Union[str, None] = None):
-#     return {"item_id": item_id, "q": q}
-
-
-def write_notification(email: str, message=""):
-    with open("log.txt", mode="w") as email_file:
-        content = f"notification for {email}: {message}"
-        email_file.write(content)
-
-
-@app.get("/send-notification/{email}")
-async def send_notification(email: str, background_tasks: BackgroundTasks):
-    background_tasks.add_task(write_notification, email, message="some notification")
-    return {"message": "Notification sent in the background"}
+    return file_path.read_json()['entries']
 
 
 def start():
     import uvicorn
-    uvicorn.run("main:app",
-                # host="0.0.0.0",
-
-                port=8000, reload=True)
+    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
 
 
 if __name__ == "__main__":
