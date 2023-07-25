@@ -12,6 +12,7 @@ CONFIG = {
     # "extract_flat": True,
     # "dump_single_json": "",
     # "print_to_file"
+    # 'consoletitle':"GEtting watchlater playlist"
 }
 
 
@@ -21,12 +22,15 @@ class YoutubeTools:
     path = Path(__file__).parent
 
     def __init__(self, config=CONFIG):
+        self.config = config
         self.youtube_dl = YoutubeDL(config)
 
+    def watch_later_fast(self):
+        with YoutubeDL(self.config) as ydl:
+            info = ydl.extract_info(self.WATCH_LATER_URL, download=False)
+            print(info)
+
     def watch_later(self):
-        #     with YoutubeDL(ydl_opts) as ydl:
-        #         info = ydl.extract_info(self.WATCH_LATER_URL, download=False)
-        #         print(info)
         return self.youtube_dl.extract_info(self.WATCH_LATER_URL, download=False)
 
 
