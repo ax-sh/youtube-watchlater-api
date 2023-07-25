@@ -4,7 +4,7 @@ from youtube_watchlater_api.utils import *
 
 def progress_hook( response ):
     ##  send  response['status']  to whatever subprocess you have going on.
-    print( response['status'] )
+    print( response['status'],"77777777" )
 
 
 CONFIG = {
@@ -30,6 +30,7 @@ class YoutubeTools:
     def __init__(self, config=CONFIG):
         self.config = config
         self.youtube_dl = YoutubeDL(config)
+        self.cookies_from_browser = ('vivaldi',)
 
     def watch_later_fast(self):
         with YoutubeDL({
@@ -37,12 +38,13 @@ class YoutubeTools:
             "verbose": True,
             # "debug": True,
             # 'yes-playlist': True,
-            'cookiesfrombrowser': ('vivaldi',),
+            'cookiesfrombrowser': self.cookies_from_browser,
             'allow_unplayable_formats':True,
             "extract_flat": True,
             # "dump_single_json": "",
             # "print_to_file"
             # 'consoletitle':"Getting watchlater playlist",
+            'post_hooks':[progress_hook],
             'progress_hooks': [progress_hook],
         }) as ydl:
             info = ydl.extract_info(self.WATCH_LATER_URL, download=False)
@@ -87,7 +89,7 @@ class YoutubeTools:
 #
 #
 def main():
-    wl_json_path = YoutubeTools.path / 'watchlater-2.json'
+    wl_json_path = YoutubeTools.path / 'watchlater-21.json'
 #     # if not  wl_json_path.is_file():
 #     #     wl_json_path.write_json({})
 #
