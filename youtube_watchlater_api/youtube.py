@@ -48,7 +48,6 @@ class YoutubeTools:
             'progress_hooks': [progress_hook],
         }) as ydl:
             info = ydl.extract_info(self.WATCH_LATER_URL, download=False)
-            print(info)
             return info
 
     def watch_later(self):
@@ -97,11 +96,7 @@ def main():
     info = yt.watch_later_fast()
     print(info)
     wl_json_path.write_json(info)
-#
-#     client = Session()
-#     DOMAIN = 'http://127.0.0.1:8090'
-#
-#
+
 
 if __name__ == '__main__':
     main()
