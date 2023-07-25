@@ -8,6 +8,7 @@ CONFIG = {
     "debug": True,
     'yes-playlist': True,
     'cookiesfrombrowser': ('vivaldi',),
+    # 'allow_unplayable_formats':True
     # "extract_flat": True,
     # "dump_single_json": "",
     # "print_to_file"
